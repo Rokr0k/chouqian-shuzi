@@ -1,0 +1,49 @@
+body {
+    background-color: darkgoldenrod;
+}
+hr {
+    height: 20px;
+    border: 5px solid cyan;
+    background-image: linear-gradient(to bottom, blue, white)
+}
+#number-viewer {
+    writing-mode: vertical-rl;
+    width: 150px;
+    height: 750px;
+    padding: 50px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Ma Shan Zheng', cursive;
+    font-size: 150px;
+    border: 2px solid yellow;
+    background-color: red;
+    color: yellow;
+}
+input.text-input {
+    width: 70px;
+    height: 20px;
+    border: 1px solid red;
+    font-size: 20px;
+    padding: 10px;
+}
+input#excpt {
+    width: initial;
+}
+input.button-input {
+    width: 70px;
+    background-color: red;
+    color: yellow;
+    border: none;
+    font-size: 20px;
+    padding: 10px;
+}
+footer {
+    left: 0;
+    right: 0;
+    padding: 10px;
+    background-color: gray;
+    position: absolute;
+    bottom: 0;
+}
