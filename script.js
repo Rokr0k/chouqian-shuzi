@@ -69,8 +69,19 @@ mode.onclick = function(ev) {
     }
 }
 
+let banners = [
+    "<img src=\"banners/banner1.png\"></img>",
+    "<img src=\"banners/banner2.png\"></img>",
+]
+let prev = -1
+
 setInterval(() => {
-    banner.innerHTML = Math.random()
+    let neo = Math.floor(Math.random()*(banners.length-1))
+    if(neo >= prev) {
+        neo++
+    }
+    prev = neo
+    banner.innerHTML = banners[prev]
 }, 15000)
 
 function toChineseString(value) {
@@ -86,11 +97,13 @@ function toChineseString(value) {
         8: "八",
         9: "九",
     }
-    const order = [100, 10, 1]
+    const order = [10000, 1000, 100, 10, 1]
     const units = {
         1: "",
         10: "十",
         100: "百",
+        1000: "千",
+        10000: "万",
     }
     let result = ""
     for(let unit of order) {
