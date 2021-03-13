@@ -28,16 +28,20 @@ input.text-input {
     font-size: 20px;
     padding: 10px;
 }
-input#excpt {
+input#excpt, input#select {
     width: initial;
 }
 input.button-input {
-    width: 70px;
+    width: fit-content;
     background-color: red;
     color: yellow;
     border: none;
     font-size: 20px;
     padding: 10px;
+}
+input.checkbox-input {
+    width: 70px;
+    height: 20px;
 }
 footer {
     left: 0;
@@ -46,4 +50,14 @@ footer {
     background-color: gray;
     position: absolute;
     bottom: 0;
+}
+
+div#banner {
+    width: 200px;
+    height: 600px;
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: white;
 }

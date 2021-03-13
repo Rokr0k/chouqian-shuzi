@@ -1,29 +1,33 @@
 "use strict"
 
 let viewer = document.getElementById("number-viewer")
+
+let mode1 = document.getElementById("mode1")
 let min = document.getElementById("min")
 let max = document.getElementById("max")
 let excpt = document.getElementById("excpt")
-let roll = document.getElementById("roll")
+let roll1 = document.getElementById("roll1")
 
-excpt.onkeydown = function(ev) {
-    if(!(ev.altKey || ev.ctrlKey || ev.metaKey || ev.shiftKey) && !ev.code.match(/^(Digit\d|Numpad\d|Space|Backspace|Arrow.*|Delete)$/)) {
+let mode2 = document.getElementById("mode2")
+let select = document.getElementById("select")
+let roll2 = document.getElementById("roll2")
+
+let mode = document.getElementById("mode")
+
+let banner = document.getElementById("banner")
+
+excpt.onkeydown = select.onkeydown = function(ev) {
+    if(!(ev.altKey || ev.ctrlKey || ev.metaKey) && !ev.code.match(/^(Digit\d|Numpad\d|Space|Backspace|Arrow.*|Delete)$/)) {
         ev.preventDefault()
     }
 }
 
-window.onkeydown = function(ev) {
-    if(ev.code === "Enter") {
-        roll.onclick()
-    }
-}
-
-roll.onclick = function() {
+roll1.onclick = function() {
     const minValue = Math.min(min.value, max.value)
     const maxValue = Math.max(max.value, min.value)
     const excptValues = excpt.value.split(" ").filter(value => value.match(/^\d+$/)).map(number => parseInt(number))
     let array = []
-    for(let i=minValue; i<=maxValue; i++) {
+    for(let i = minValue; i < maxValue; i++) {
         if(!excptValues.includes(i)) {
             array.push(i)
         }
@@ -36,8 +40,38 @@ roll.onclick = function() {
     else {
         alert("没有可用的数字")
     }
-    roll.blur()
+    roll1.blur()
 }
+
+roll2.onclick = function() {
+    const selectValue = select.value.split(" ").filter(value => value.match(/^\d+$/)).map(number => parseInt(number))
+    if(selectValue.length > 0) {
+        const result = selectValue[Math.floor(Math.random()*selectValue.length)]
+        viewer.innerHTML = toChineseString(result)
+        select.value = select.value.replace(new RegExp(result+"\\s*"), "")
+    }
+    else {
+        alert("没有数字")
+    }
+    roll2.blur()
+}
+
+let modeValue = false
+mode.onclick = function(ev) {
+    modeValue = !modeValue
+    if(modeValue) {
+        mode1.style.display = "none"
+        mode2.style.display = "block"
+    }
+    else {
+        mode1.style.display = "block"
+        mode2.style.display = "none"
+    }
+}
+
+setInterval(() => {
+    banner.innerHTML = Math.random()
+}, 15000)
 
 function toChineseString(value) {
     const nums = {
@@ -61,10 +95,10 @@ function toChineseString(value) {
     let result = ""
     for(let unit of order) {
         let digit = Math.floor(value / unit)
-        if((unit > 1 && digit>1) || (unit === 1 && digit > 0)) {
+        if((unit > 1 && digit > 1) || (unit === 1 && digit > 0)) {
             result = result.concat(nums[digit])
         }
-        if(digit>0) {
+        if(digit > 0) {
             result = result.concat(units[unit])
         }
         value = value % unit

@@ -5,7 +5,7 @@
         <title>抓阄数字</title>
         <link rel="stylesheet" href="style.css">
         <style>
-            @import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng');
+            @import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap');
         </style>
     </head>
     <body>
@@ -13,14 +13,22 @@
             <h1>韩国数字媒体高等学校</h1>
         </header>
         <hr>
-        <input type="number" class="text-input" id="min" placeholder="最小" value="1">
-        <input type="number" class="text-input" id="max" placeholder="最大" value="35">
-        <input type="text" class="text-input" id="excpt" placeholder="例外">
-        <input type="button" class="button-input" id="roll" value="抓阄">
+        <div id="mode1" style="display: block;">
+            <input type="number" class="text-input" id="min" placeholder="最小" value="1">
+            <input type="number" class="text-input" id="max" placeholder="最大" value="35">
+            <input type="text" class="text-input" id="excpt" placeholder="例外">
+            <input type="button" class="button-input" id="roll1" value="抓阄">
+        </div>
+        <div id="mode2" style="display: none;">
+            <input type="text" class="text-input" id="select">
+            <input type="button" class="button-input" id="roll2" value="抓阄">
+        </div>
         <hr>
+        <input type="button" class="button-input" id="mode" value="更改状态">
         <footer>
             2421 梁恩赫
         </footer>
+        <div id="banner"></div>
         <div id="number-viewer"></div>
     </body>
     <script src="script.js"></script>
