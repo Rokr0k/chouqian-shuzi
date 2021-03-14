@@ -71,7 +71,8 @@ mode.onclick = function(ev) {
 
 let banners = [
     "<img src=\"banners/banner1.png\"></img>",
-    "<img src=\"banners/banner2.png\"></img>",
+    "<a href=\"https://www.dimigo.hs.kr/\" target=\"_blank\"><img src=\"banners/banner2.png\"></img></a>",
+    "<a href=\"https://www.jetbrains.com/\" target=\"_blank\"><img src=\"banners/banner3.png\"></img></a>",
 ]
 let prev = -1
 
