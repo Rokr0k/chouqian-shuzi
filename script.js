@@ -34,7 +34,7 @@ roll1.onclick = function() {
     }
     if(array.length > 0) {
         const result = array[Math.floor(Math.random()*array.length)]
-        viewer.innerHTML = toChineseString(result)
+        viewer.innerHTML = result.toChineseString()
         excpt.value = excpt.value.concat(" ").concat(result.toString()).trim()
     }
     else {
@@ -47,7 +47,7 @@ roll2.onclick = function() {
     const selectValue = select.value.split(" ").filter(value => value.match(/^\d+$/)).map(number => parseInt(number))
     if(selectValue.length > 0) {
         const result = selectValue[Math.floor(Math.random()*selectValue.length)]
-        viewer.innerHTML = toChineseString(result)
+        viewer.innerHTML = result.toChineseString()
         select.value = select.value.replace(new RegExp(result+"\\s*"), "")
     }
     else {
@@ -85,7 +85,7 @@ setInterval(() => {
     banner.innerHTML = banners[prev]
 }, 15000)
 
-function toChineseString(value) {
+Number.prototype.toChineseString = function() {
     const nums = {
         0: "零",
         1: "一",
@@ -98,18 +98,17 @@ function toChineseString(value) {
         8: "八",
         9: "九",
     }
-    const order = [10000, 1000, 100, 10, 1]
     const units = {
         1: "",
         10: "十",
         100: "百",
         1000: "千",
-        10000: "万",
     }
     let result = ""
-    for(let unit of order) {
-        let digit = Math.floor(value / unit)
-        if((unit > 1 && digit > 1) || (unit === 1 && digit > 0)) {
+    let value = this
+    for(let unit of Object.keys(units).reverse()) {
+        let digit = parseInt(value / unit)
+        if((unit > 1 && digit > 1) || (unit == 1 && digit > 0)) {
             result = result.concat(nums[digit])
         }
         if(digit > 0) {
