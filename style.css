@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap');
+
 body {
     background-color: darkgoldenrod;
 }
@@ -9,7 +11,7 @@ hr {
 #number-viewer {
     writing-mode: vertical-rl;
     width: auto;
-    height: 750px;
+    height: fit-content;
     padding: 50px;
     position: absolute;
     left: 50%;
@@ -51,7 +53,6 @@ footer {
     position: absolute;
     bottom: 0;
 }
-
 div#banner {
     width: 200px;
     height: 600px;

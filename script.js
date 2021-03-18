@@ -103,10 +103,11 @@ Number.prototype.toChineseString = function() {
         10: "十",
         100: "百",
         1000: "千",
+        10000: "万",
     }
     let result = ""
     let value = this
-    for(let unit of Object.keys(units).reverse()) {
+    Object.keys(units).reverse().forEach(unit => {
         let digit = parseInt(value / unit)
         if((unit > 1 && digit > 1) || (unit == 1 && digit > 0)) {
             result = result.concat(nums[digit])
@@ -115,6 +116,6 @@ Number.prototype.toChineseString = function() {
             result = result.concat(units[unit])
         }
         value = value % unit
-    }
+    })
     return result || "零"
 }
