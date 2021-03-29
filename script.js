@@ -27,7 +27,7 @@ roll1.onclick = function() {
     const maxValue = Math.max(max.value, min.value)
     const excptValues = excpt.value.split(" ").filter(value => value.match(/^\d+$/)).map(number => parseInt(number))
     let array = []
-    for(let i = minValue; i < maxValue; i++) {
+    for(let i = minValue; i <= maxValue; i++) {
         if(!excptValues.includes(i)) {
             array.push(i)
         }
@@ -35,7 +35,7 @@ roll1.onclick = function() {
     if(array.length > 0) {
         const result = array[Math.floor(Math.random()*array.length)]
         viewer.innerHTML = result.toChineseString()
-        excpt.value = excpt.value.concat(" ").concat(result.toString()).trim()
+        excpt.value = result.toString().concat(" ").concat(excpt.value.concat(" ")).trim()
     }
     else {
         alert("没有可用的数字")
@@ -86,6 +86,9 @@ setInterval(() => {
 }, 15000)
 
 Number.prototype.toChineseString = function() {
+    if(this == 0) {
+        return "零"
+    }
     const nums = {
         0: "零",
         1: "一",
@@ -103,10 +106,9 @@ Number.prototype.toChineseString = function() {
         10: "十",
         100: "百",
         1000: "千",
-        10000: "万",
     }
     let result = ""
-    let value = this
+    let value = this % 10000
     Object.keys(units).reverse().forEach(unit => {
         let digit = parseInt(value / unit)
         if((unit > 1 && digit > 1) || (unit == 1 && digit > 0)) {
@@ -117,5 +119,6 @@ Number.prototype.toChineseString = function() {
         }
         value = value % unit
     })
-    return result || "零"
+    let up = Math.floor(this / 10000).toChineseString()
+    return ((up!="零"?up.concat("万"):"") + result)
 }
