@@ -25,15 +25,12 @@ excpt.onkeydown = select.onkeydown = function(ev) {
 roll1.onclick = function() {
     const minValue = Math.min(min.value, max.value)
     const maxValue = Math.max(max.value, min.value)
-    const excptValues = excpt.value.split(" ").filter(value => value.match(/^\d+$/)).map(number => parseInt(number))
-    let array = []
-    for(let i = minValue; i <= maxValue; i++) {
-        if(!excptValues.includes(i)) {
-            array.push(i)
+    const excptValues = excpt.value.split(" ").filter(value => value.match(/^\d+$/)).map(number => parseInt(number)).sort()
+    if(maxValue - minValue + 1 > excptValues.length) {
+        let result = parseInt(Math.random() * (maxValue - minValue + 1) + minValue)
+        while(excptValues.includes(result)) {
+            result = parseInt(Math.random() * (maxValue - minValue + 1) + minValue)
         }
-    }
-    if(array.length > 0) {
-        const result = array[Math.floor(Math.random()*array.length)]
         viewer.innerHTML = result.toChineseString()
         excpt.value = result.toString().concat(" ").concat(excpt.value.concat(" ")).trim()
     }
@@ -70,7 +67,7 @@ mode.onclick = function(ev) {
 }
 
 let banners = [
-    "<img src=\"banners/banner1.png\"></img>",
+    "<a href=\"https://www.facebook.com/Cracker-in-dimigo-783226285143210/\" target=\"_blank\"><img src=\"banners/banner1.png\"></img></a>",
     "<a href=\"https://www.dimigo.hs.kr/\" target=\"_blank\"><img src=\"banners/banner2.png\"></img></a>",
     "<a href=\"https://www.jetbrains.com/\" target=\"_blank\"><img src=\"banners/banner3.png\"></img></a>",
 ]
@@ -89,36 +86,49 @@ Number.prototype.toChineseString = function() {
     if(this == 0) {
         return "零"
     }
-    const nums = {
-        0: "零",
-        1: "一",
-        2: "二",
-        3: "三",
-        4: "四",
-        5: "五",
-        6: "六",
-        7: "七",
-        8: "八",
-        9: "九",
-    }
-    const units = {
-        1: "",
-        10: "十",
-        100: "百",
-        1000: "千",
-    }
-    let result = ""
-    let value = this % 10000
-    Object.keys(units).reverse().forEach(unit => {
-        let digit = parseInt(value / unit)
-        if((unit > 1 && digit > 1) || (unit == 1 && digit > 0)) {
-            result = result.concat(nums[digit])
+    else if(this < 100) {
+        let digits = {
+            0: "",
+            1: "一",
+            2: "二",
+            3: "三",
+            4: "四",
+            5: "五",
+            6: "六",
+            7: "七",
+            8: "八",
+            9: "九",
         }
-        if(digit > 0) {
-            result = result.concat(units[unit])
+        let a = parseInt(this / 10)
+        let b = this % 10
+        let result
+        if(a > 1) {
+            result = digits[a].concat("十").concat(digits[b])
         }
-        value = value % unit
-    })
-    let up = Math.floor(this / 10000).toChineseString()
-    return ((up!="零"?up.concat("万"):"") + result)
+        else if(a == 1) {
+            result = "十".concat(digits[b])
+        }
+        else {
+            result = digits[b]
+        }
+        return result
+    }
+    else {
+        let digits = {
+            "0": "零",
+            "1": "一",
+            "2": "两",  
+            "3": "三",
+            "4": "四",
+            "5": "五",
+            "6": "六",
+            "7": "七",
+            "8": "八",
+            "9": "九",
+        }
+        let units = ["", "十", "百", "千", "万", "十", "百", "千", "亿", "十", "百", "千"]
+        let str = this.toString().split("").reverse().map((v, i) => digits[v].concat(units[i])).reverse().join("")
+        let result = str.replace(/(零[十百千]?)+/g, "零").replace(/零万/g, "万").replace(/零亿/g, "亿").replace(/零$/, "").replace(/两十/g, "二十").replace(/两$/g, "二")
+        return result
+    }
 }
