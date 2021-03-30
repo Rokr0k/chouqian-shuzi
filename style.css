@@ -45,14 +45,6 @@ input.checkbox-input {
     width: 70px;
     height: 20px;
 }
-footer {
-    left: 0;
-    right: 0;
-    padding: 10px;
-    background-color: gray;
-    position: absolute;
-    bottom: 0;
-}
 div#banner {
     width: 200px;
     height: 600px;
