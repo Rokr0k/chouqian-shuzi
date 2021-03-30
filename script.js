@@ -70,6 +70,7 @@ let banners = [
     "<a href=\"https://www.facebook.com/Cracker-in-dimigo-783226285143210/\" target=\"_blank\"><img src=\"banners/banner1.png\"></img></a>",
     "<a href=\"https://www.dimigo.hs.kr/\" target=\"_blank\"><img src=\"banners/banner2.png\"></img></a>",
     "<a href=\"https://www.jetbrains.com/\" target=\"_blank\"><img src=\"banners/banner3.png\"></img></a>",
+    "<a href=\"https://www.facebook.com/deltaindimigo/\" target=\"_blank\"><img src=\"banners/banner4.png\"></img></a>",
 ]
 let prev = -1
 
