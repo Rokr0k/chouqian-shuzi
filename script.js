@@ -129,10 +129,10 @@ Number.prototype.toChineseString = function() {
         let units = ["", "十", "百", "千", "万", "十", "百", "千", "亿", "十", "百", "千"]
         let str = this.toString().split("").reverse().map((v, i) => digits[v].concat(units[i])).reverse().join("")
         let result = str.replace(/(零[十百千]?)+/g, "零").replace(/零万/g, "万").replace(/零亿/g, "亿").replace(/零$/, "").replace(/两十/g, "二十").replace(/两$/g, "二")
-        if(result.match(/[一两二三四五六七八九][十百千]$/) && !result.match(/零[一两二三四五六七八九][十百千]$/)) {
+        if(result.match(/[一两二三四五六七八九][十百千万亿]$/) && !result.match(/零[一两二三四五六七八九][十百千万亿]$/)) {
             result = result.replace(/.$/, "")
         }
-        if(result.match(/[一两二三四五六七八九][十百千]万/) && !result.match(/零[一两二三四五六七八九][十百千]万/)) {
+        if(result.match(/[一两二三四五六七八九][十百千亿]万/) && !result.match(/零[一两二三四五六七八九][十百千亿]万/)) {
             result = result.replace(/.万/, "万")
         }
         if(result.match(/[一两二三四五六七八九][十百千]亿/) && !result.match(/零[一两二三四五六七八九][十百千]亿/)) {
