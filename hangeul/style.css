@@ -1,0 +1,37 @@
+body {
+    background-color: lightcyan;
+}
+#number-viewer {
+    width: fit-content;
+    height: auto;
+    padding: 50px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-family: '굴림', 'gulim', serif;
+    font-size: 170px;
+    border: 2px solid lightseagreen;
+    background-color: lightblue;
+}
+input.text-input {
+    width: 70px;
+    height: 20px;
+    border: 1px solid lightseagreen;
+    font-size: 20px;
+    padding: 10px;
+}
+input#excpt, input#select {
+    width: initial;
+}
+input.button-input {
+    width: fit-content;
+    background-color: lightseagreen;
+    border: none;
+    font-size: 20px;
+    padding: 10px;
+}
+input.checkbox-input {
+    width: 70px;
+    height: 20px;
+}

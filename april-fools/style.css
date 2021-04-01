@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap');
+
+body {
+    background-color: cornflowerblue;
+}
+hr {
+    height: 20px;
+    border: 5px solid cyan;
+    background-image: linear-gradient(to bottom, blue, white)
+}
+#number-viewer {
+    writing-mode: vertical-lr;
+    width: auto;
+    height: fit-content;
+    padding: 50px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-family: "Ma Shan Zheng", cursive;
+    font-size: 200px;
+    border: 2px solid blue;
+    background-color: cyan;
+    color: blue;
+}
+input.text-input {
+    width: 70px;
+    height: 20px;
+    border: 1px solid cyan;
+    font-size: 20px;
+    padding: 10px;
+}
+input#excpt, input#select {
+    width: initial;
+}
+input.button-input {
+    width: fit-content;
+    background-color: cyan;
+    color: blue;
+    border: none;
+    font-size: 20px;
+    padding: 10px;
+}
+input.checkbox-input {
+    width: 70px;
+    height: 20px;
+}
+div#banner {
+    width: 200px;
+    height: 600px;
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 50px;
+}

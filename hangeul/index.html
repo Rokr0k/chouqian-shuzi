@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>숫자추첨</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <header>
+            <h1>한글날!</h1>
+            <h1>한국디지털미디어고등학교</h1>
+        </header>
+        <hr>
+        <div id="mode1" style="display: block;">
+            <input type="number" class="text-input" id="min" placeholder="최소" value="1">
+            <input type="number" class="text-input" id="max" placeholder="최대" value="35">
+            <input type="text" class="text-input" id="excpt" placeholder="예외">
+            <input type="button" class="button-input" id="roll1" value="추첨">
+            <embed width="300" height="50" align="middle" type="application/x-shockwave-flash" pluginspage="http://www.adobe.com/go/getflashplayer">
+        </div>
+        <div id="mode2" style="display: none;">
+            <input type="text" class="text-input" id="select">
+            <input type="button" class="button-input" id="roll2" value="추첨">
+            <embed width="300" height="50" align="middle" type="application/x-shockwave-flash" pluginspage="http://www.adobe.com/go/getflashplayer">
+        </div>
+        <hr>
+        <input type="button" class="button-input" id="mode" value="모드 변경">
+        <div style="width: 200px; height: 600px; position: absolute; right: 40px; top: 50%; transform: translateY(-50%);">
+            <embed width="200" height="600" align="middle" type="application/x-shockwave-flash" pluginspage="http://www.adobe.com/go/getflashplayer">
+        </div>
+        <div style="width: 600px; height: 200px; position: absolute; right: 50%; bottom: 40px; transform: translateX(-50%);">
+            <embed width="600" height="200" align="middle" type="application/x-shockwave-flash" pluginspage="http://www.adobe.com/go/getflashplayer">
+        </div>
+        <div id="number-viewer"></div>
+        <script src="script.js"></script>
+    </body>
+</html>

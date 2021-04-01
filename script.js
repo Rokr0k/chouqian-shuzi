@@ -72,10 +72,10 @@ let banners = [
     "<a href=\"https://www.facebook.com/deltaindimigo/\" target=\"_blank\"><img src=\"banners/banner3.png\"></img></a>",
     "<a href=\"https://www.facebook.com/%E6%B7%B8%E6%98%8E-%EC%B2%AD%EB%AA%85-103118078006315/\" target=\"_blank\"><img src=\"banners/banner4.png\"></img></a>",
 ]
-let prev = -1
+let prev = banners.length
 
 setInterval(() => {
-    let neo = Math.floor(Math.random()*(banners.length-(prev < 0 ? 0 : 1)))
+    let neo = Math.floor(Math.random()*(banners.length-(prev < banners.length ? 1 : 0)))
     if(neo >= prev) {
         neo++
     }

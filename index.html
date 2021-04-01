@@ -3,6 +3,15 @@
     <head>
         <meta charset="utf-8">
         <title>抓阄数字</title>
+        <script>
+            let date = new Date().getMonth() * 100 + new Date().getDate()
+            if(date === 301) {
+                location.replace("./april-fools/")
+            }
+            if(date === 909) {
+                location.replace("./hangeul/")
+            }
+        </script>
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
