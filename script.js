@@ -26,31 +26,56 @@ roll1.onclick = function() {
     const minValue = Math.min(min.value, max.value)
     const maxValue = Math.max(max.value, min.value)
     const excptValues = excpt.value.split(" ").filter(value => value.match(/^\d+$/)).map(number => parseInt(number)).sort()
-    if(maxValue - minValue + 1 > excptValues.length) {
+    if(maxValue - minValue + 1 <= excptValues.length) {
+        alert("没有可用的数字")
+        return
+    }
+    mode1.childNodes.forEach(node => node.disabled = true)
+    let arr = "零一二三四五六七八九十"
+    let interval = setInterval(() => {
+        if(maxValue <= 10) {
+            viewer.innerHTML = arr[Math.floor(Math.random()*arr.length)]
+        }
+        else {
+            viewer.innerHTML = arr[Math.floor(Math.random()*arr.length)]+arr[Math.floor(Math.random()*arr.length)]+arr[Math.floor(Math.random()*arr.length)]
+        }
+    }, 50)
+    setTimeout(() => {
+        clearInterval(interval)
+        mode1.childNodes.forEach(node => node.disabled = false)
         let result = parseInt(Math.random() * (maxValue - minValue + 1) + minValue)
         while(excptValues.includes(result)) {
             result = parseInt(Math.random() * (maxValue - minValue + 1) + minValue)
         }
         viewer.innerHTML = result.toChineseString()
         excpt.value = result.toString().concat(" ").concat(excpt.value.concat(" ")).trim()
-    }
-    else {
-        alert("没有可用的数字")
-    }
-    roll1.blur()
+    }, 2500)
 }
 
 roll2.onclick = function() {
-    const selectValue = select.value.split(" ").filter(value => value.match(/^\d+$/)).map(number => parseInt(number))
-    if(selectValue.length > 0) {
+    const selectValue = select.value.split(" ").filter(value => value.match(/^\d+$/)).map(number => parseInt(number)).sort((a, b) => a - b)
+    if(selectValue.length == 0) {
+        alert("没有数字")
+        return
+    }
+    console.log(selectValue)
+    mode2.childNodes.forEach(node => node.disabled = true)
+    let arr = "零一二三四五六七八九十"
+    let interval = setInterval(() => {
+        if(selectValue[selectValue.length-1] <= 10) {
+            viewer.innerHTML = arr[Math.floor(Math.random()*arr.length)]
+        }
+        else {
+            viewer.innerHTML = arr[Math.floor(Math.random()*arr.length)]+arr[Math.floor(Math.random()*arr.length)]+arr[Math.floor(Math.random()*arr.length)]
+        }
+    }, 50)
+    setTimeout(() => {
+        clearInterval(interval)
+        mode2.childNodes.forEach(node => node.disabled = false)
         const result = selectValue[Math.floor(Math.random()*selectValue.length)]
         viewer.innerHTML = result.toChineseString()
         select.value = select.value.replace(new RegExp(result+"\\s*"), "")
-    }
-    else {
-        alert("没有数字")
-    }
-    roll2.blur()
+    }, 2500)
 }
 
 let modeValue = false
@@ -114,31 +139,5 @@ Number.prototype.toChineseString = function() {
         }
         return result
     }
-    else {
-        let digits = {
-            "0": "零",
-            "1": "一",
-            "2": "两",  
-            "3": "三",
-            "4": "四",
-            "5": "五",
-            "6": "六",
-            "7": "七",
-            "8": "八",
-            "9": "九",
-        }
-        let units = ["", "十", "百", "千", "万", "十", "百", "千", "亿", "十", "百", "千"]
-        let str = this.toString().split("").reverse().map((v, i) => digits[v].concat(units[i])).reverse().join("")
-        let result = str.replace(/(零[十百千]?)+/g, "零").replace(/零万/g, "万").replace(/零亿/g, "亿").replace(/零$/, "").replace(/两十/g, "二十").replace(/两$/g, "二")
-        if(result.match(/[一两二三四五六七八九][十百千万亿]$/) && !result.match(/零[一两二三四五六七八九][十百千万亿]$/)) {
-            result = result.replace(/.$/, "")
-        }
-        if(result.match(/[一两二三四五六七八九][十百千亿]万/) && !result.match(/零[一两二三四五六七八九][十百千亿]万/)) {
-            result = result.replace(/.万/, "万")
-        }
-        if(result.match(/[一两二三四五六七八九][十百千]亿/) && !result.match(/零[一两二三四五六七八九][十百千]亿/)) {
-            result = result.replace(/.亿/, "亿")
-        }
-        return result
-    }
+    return ""
 }

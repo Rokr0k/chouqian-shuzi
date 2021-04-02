@@ -26,31 +26,55 @@ roll1.onclick = function() {
     const minValue = Math.min(min.value, max.value)
     const maxValue = Math.max(max.value, min.value)
     const excptValues = excpt.value.split(" ").filter(value => value.match(/^\d+$/)).map(number => parseInt(number)).sort()
-    if(maxValue - minValue + 1 > excptValues.length) {
+    if(maxValue - minValue + 1 <= excptValues.length) {
+        alert("쵹ᄍᆞᆼᅟᅵ업다")
+        return
+    }
+    mode1.childNodes.forEach(node => node.disabled = true)
+    let arr = ["려ᇰ〮", "ᅙᅵᇙ〮", "ᅀᅵᆼ〮", "삼〮", "ᄉᆞᆼ〯", "ᅌᅩᆼ〯", "륙〮", "치ᇙ〮", "바ᇙ〮", "구ᇢ〯"]
+    let interval = setInterval(() => {
+        if(maxValue <= 10) {
+            viewer.innerHTML = arr[Math.floor(Math.random()*arr.length)]
+        }
+        else {
+            viewer.innerHTML = arr[Math.floor(Math.random()*arr.length)]+arr[Math.floor(Math.random()*arr.length)]+arr[Math.floor(Math.random()*arr.length)]
+        }
+    }, 50)
+    setTimeout(() => {
+        clearInterval(interval)
+        mode1.childNodes.forEach(node => node.disabled = false)
         let result = parseInt(Math.random() * (maxValue - minValue + 1) + minValue)
         while(excptValues.includes(result)) {
             result = parseInt(Math.random() * (maxValue - minValue + 1) + minValue)
         }
         viewer.innerHTML = result.toChineseString()
         excpt.value = result.toString().concat(" ").concat(excpt.value.concat(" ")).trim()
-    }
-    else {
-        alert("숫자가 없습니다")
-    }
-    roll1.blur()
+    }, 2500)
 }
 
 roll2.onclick = function() {
-    const selectValue = select.value.split(" ").filter(value => value.match(/^\d+$/)).map(number => parseInt(number))
-    if(selectValue.length > 0) {
+    const selectValue = select.value.split(" ").filter(value => value.match(/^\d+$/)).map(number => parseInt(number)).sort((a, b) => a - b)
+    if(selectValue.length == 0) {
+        alert("쵹ᄍᆞᆼᅟᅵ업다")
+    }
+    console.log(selectValue)
+    mode2.childNodes.forEach(node => node.disabled = true)
+    let arr = ["려ᇰ〮", "ᅙᅵᇙ〮", "ᅀᅵᆼ〮", "삼〮", "ᄉᆞᆼ〯", "ᅌᅩᆼ〯", "륙〮", "치ᇙ〮", "바ᇙ〮", "구ᇢ〯"]
+    let interval = setInterval(() => {
+        if(selectValue[selectValue.length-1] <= 10) {
+            viewer.innerHTML = arr[Math.floor(Math.random()*arr.length)]
+        }
+        else {
+            viewer.innerHTML = arr[Math.floor(Math.random()*arr.length)]+arr[Math.floor(Math.random()*arr.length)]+arr[Math.floor(Math.random()*arr.length)]
+        }
+    }, 50)
+    setTimeout(() => {
+        clearInterval(interval)
+        mode2.childNodes.forEach(node => node.disabled = false)
         const result = selectValue[Math.floor(Math.random()*selectValue.length)]
         viewer.innerHTML = result.toChineseString()
         select.value = select.value.replace(new RegExp(result+"\\s*"), "")
-    }
-    else {
-        alert("숫자가 없습니다")
-    }
-    roll2.blur()
+    }, 2500)
 }
 
 let modeValue = false
@@ -68,35 +92,34 @@ mode.onclick = function(ev) {
 
 Number.prototype.toChineseString = function() {
     if(this == 0) {
-        return "영"
+        return "려ᇰ〮"
     }
-    let digits = {
-        "1": "일",
-        "2": "이",  
-        "3": "삼",
-        "4": "사",
-        "5": "오",
-        "6": "육",
-        "7": "칠",
-        "8": "팔",
-        "9": "구",
-    }
-    let units = ["", "십", "백", "천"]
-    let separs = ["", "만", "억", "조"]
-    let items = []
-    for(let i=0; i<4; i++) {
-        let separ = Math.floor(this / Math.pow(10000, i)) % 10000
-        if(!separ) {
-            continue
+    else if(this < 100) {
+        let digits = {
+            0: "",
+            1: "ᅙᅵᇙ〮",
+            2: "ᅀᅵᆼ〮",
+            3: "삼〮",
+            4: "ᄉᆞᆼ〯",
+            5: "ᅌᅩᆼ〯",
+            6: "륙〮",
+            7: "치ᇙ〮",
+            8: "바ᇙ〮",
+            9: "구ᇢ〯",
         }
-        items.push(separs[i])
-        for(let j=0; j<4; j++) {
-            let unit = parseInt(separ / Math.pow(10, j)) % 10
-            if(unit) {
-                items.push(units[j], digits[unit])
-            }
+        let a = parseInt(this / 10)
+        let b = this % 10
+        let result
+        if(a > 1) {
+            result = digits[a].concat("씹〮").concat(digits[b])
         }
+        else if(a == 1) {
+            result = "씹〮".concat(digits[b])
+        }
+        else {
+            result = digits[b]
+        }
+        return result
     }
-    let result = items.reverse().join("").replace(/일십/g, "십").replace(/일백/g, "백").replace(/일천/g, "천")
-    return result
+    return ""
 }

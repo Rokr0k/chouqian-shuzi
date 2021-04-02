@@ -26,31 +26,54 @@ roll1.onclick = function() {
     const minValue = Math.min(min.value, max.value)
     const maxValue = Math.max(max.value, min.value)
     const excptValues = excpt.value.split(" ").filter(value => value.match(/^\d+$/)).map(number => parseInt(number)).sort()
-    if(maxValue - minValue + 1 > excptValues.length) {
+    if(maxValue - minValue + 1 <= excptValues.length) {
+        alert("No numbers available")
+        return
+    }
+    mode1.childNodes.forEach(node => node.disabled = true)
+    let arr = "abcdefghijklmnopqrstuvwxyz"
+    let interval = setInterval(() => {
+        let result = arr.split("").shuffle()
+        result[0] = result[0].toUpperCase()
+        viewer.innerHTML = result.join("").substr(0, 10)
+    }, 50)
+    setTimeout(() => {
+        clearInterval(interval)
+        mode1.childNodes.forEach(node => node.disabled = false)
         let result = parseInt(Math.random() * (maxValue - minValue + 1) + minValue)
         while(excptValues.includes(result)) {
             result = parseInt(Math.random() * (maxValue - minValue + 1) + minValue)
         }
-        viewer.innerHTML = result.toManchuString()
+        let str = result.toChineseString().split("")
+        str[0] = str[0].toUpperCase()
+        viewer.innerHTML = str.join("")
         excpt.value = result.toString().concat(" ").concat(excpt.value.concat(" ")).trim()
-    }
-    else {
-        alert("메이요커용더슈쯔")
-    }
-    roll1.blur()
+    }, 2500)
 }
 
 roll2.onclick = function() {
-    const selectValue = select.value.split(" ").filter(value => value.match(/^\d+$/)).map(number => parseInt(number))
-    if(selectValue.length > 0) {
+    const selectValue = select.value.split(" ").filter(value => value.match(/^\d+$/)).map(number => parseInt(number)).sort((a, b) => a - b)
+    if(selectValue.length == 0) {
+        alert("No numbers available")
+        return
+    }
+    console.log(selectValue)
+    mode2.childNodes.forEach(node => node.disabled = true)
+    let arr = "abcdefghijklmnopqrstuvwxyz"
+    let interval = setInterval(() => {
+        let result = arr.split("").shuffle()
+        result[0] = result[0].toUpperCase()
+        viewer.innerHTML = result.join("").substr(0, 10)
+    }, 50)
+    setTimeout(() => {
+        clearInterval(interval)
+        mode2.childNodes.forEach(node => node.disabled = false)
         const result = selectValue[Math.floor(Math.random()*selectValue.length)]
-        viewer.innerHTML = result.toManchuString()
+        let str = result.toChineseString().split("")
+        str[0] = str[0].toUpperCase()
+        viewer.innerHTML = str.join("")
         select.value = select.value.replace(new RegExp(result+"\\s*"), "")
-    }
-    else {
-        alert("메이요슈쯔")
-    }
-    roll2.blur()
+    }, 2500)
 }
 
 let modeValue = false
@@ -83,45 +106,78 @@ setInterval(() => {
     banner.innerHTML = banners[prev]
 }, 15000)
 
-Number.prototype.toManchuString = function() {
+Number.prototype.toChineseString = function() {
     if(this == 0) {
-        return "<ruby>ᠠᡴᡡ<rt>无</rt></ruby>"
+        return "zero"
     }
     else if(this < 100) {
         let ones = {
-            1: "<ruby>ᡝᠮᡠ<rt>一</rt></ruby>",
-            2: "<ruby>ᠵᡠᠸᡝ<rt>二</rt></ruby>",
-            3: "<ruby>ᡳᠯᠠᠨ<rt>三</rt></ruby>",
-            4: "<ruby>ᡩᡠᡳᠨ<rt>四</rt></ruby>",
-            5: "<ruby>ᠰᡠᠨᠵᠠ<rt>五</rt></ruby>",
-            6: "<ruby>ᠨᡳᠩᡤᡠᠨ<rt>六</rt></ruby>",
-            7: "<ruby>ᠨᠠᡩᠠᠨ<rt>七</rt></ruby>",
-            8: "<ruby>ᠵᠠᡴᡡᠨ<rt>八</rt></ruby>",
-            9: "<ruby>ᡠᠶᡠᠨ<rt>九</rt></ruby>",
+            0: "",
+            1: "one",
+            2: "two",
+            3: "three",
+            4: "four",
+            5: "five",
+            6: "six",
+            7: "seven",
+            8: "eight",
+            9: "nine",
+        }
+        let specs = {
+            10: "ten",
+            11: "eleven",
+            12: "twelve",
+            13: "thirteen",
+            14: "fourteen",
+            15: "fifteen",
+            16: "sixteen",
+            17: "seventeen",
+            18: "eighteen",
+            19: "nineteen",
         }
         let tens = {
-            1: "<ruby>ᠵᡠᠸᠠᠨ<rt>十</rt></ruby>",
-            2: "<ruby>ᠣᡵᡳᠨ<rt>二十</rt></ruby>",
-            3: "<ruby>ᡤᡡᠰᡳᠨ<rt>三十</rt></ruby>",
-            4: "<ruby>ᡩᡝᡥᡳ<rt>四十</rt></ruby>",
-            5: "<ruby>ᠰᡠᠰᠠᡳ<rt>五十</rt></ruby>",
-            6: "<ruby>ᠨᡳᠨᠵᡠ<rt>六十</rt></ruby>",
-            7: "<ruby>ᠨᠠᡩᠠᠨᠵᡠ<rt>七十</rt></ruby>",
-            8: "<ruby>ᠵᠠᡴᡡᠨᠵᡠ<rt>八十</rt></ruby>",
-            9: "<ruby>ᡠᠶᡠᠨᠵᡠ<rt>九十</rt></ruby>",
+            2: "twenty",
+            3: "thirty",
+            4: "forty",
+            5: "fifty",
+            6: "sixty",
+            7: "seventy",
+            8: "eighty",
+            9: "ninety",
         }
         let a = parseInt(this / 10)
         let b = this % 10
-        let result = []
-        if(a > 0) {
-            result.push(tens[a])
+        let result
+        if(a > 1) {
+            result = [tens[a], ones[b]]
         }
-        if(b > 0) {
-            result.push(ones[b])
+        else if(a == 1) {
+            result = [specs[this]]
         }
-        if(this == 15) {
-            result = ["<ruby>ᡨᠣᡶᠣᡥᠣᠨ<rt>十五</rt></ruby>"]
+        else {
+            result = [ones[b]]
         }
         return result.join(" ")
     }
+    return ""
 }
+
+Array.prototype.shuffle = function() {
+    let result = [...this]
+    let currentIndex = result.length, temporaryValue, randomIndex;
+  
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+  
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+  
+      // And swap it with the current element.
+      temporaryValue = result[currentIndex];
+      result[currentIndex] = result[randomIndex];
+      result[randomIndex] = temporaryValue;
+    }
+  
+    return result;
+  }

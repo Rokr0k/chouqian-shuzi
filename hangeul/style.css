@@ -1,5 +1,23 @@
+div.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    font-size: 50px;
+    font-weight: 900;
+    color: #f0f0f0;
+    user-select: none;
+    cursor: default;
+    z-index: -1;
+    overflow: hidden;
+}
+
 body {
-    background-color: lightcyan;
+    font-family: sans-serif;
+}
+hr {
+    border: 1px solid black;
 }
 #number-viewer {
     width: fit-content;
@@ -9,15 +27,17 @@ body {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    font-family: '굴림', 'gulim', serif;
-    font-size: 170px;
-    border: 2px solid lightseagreen;
-    background-color: lightblue;
+    font-family: sans-serif;
+    font-size: 150px;
+    border: 5px solid black;
+    background-color: white;
+    color: black;
 }
 input.text-input {
     width: 70px;
     height: 20px;
-    border: 1px solid lightseagreen;
+    border: 1px solid black;
+    font-family: inherit;
     font-size: 20px;
     padding: 10px;
 }
@@ -26,12 +46,22 @@ input#excpt, input#select {
 }
 input.button-input {
     width: fit-content;
-    background-color: lightseagreen;
-    border: none;
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    font-family: inherit;
     font-size: 20px;
     padding: 10px;
 }
 input.checkbox-input {
     width: 70px;
     height: 20px;
+}
+div#banner {
+    width: 200px;
+    height: 600px;
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
 }

@@ -1,12 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+SC&display=swap');
 
 body {
-    background-color: darkgoldenrod;
+    background-image: url("./background.jpg");
+    font-family: 'Noto Sans SC', sans-serif;
 }
 hr {
-    height: 20px;
-    border: 5px solid cyan;
-    background-image: linear-gradient(to bottom, blue, white)
+    border: 1px solid goldenrod;
 }
 #number-viewer {
     writing-mode: vertical-rl;
@@ -19,7 +18,7 @@ hr {
     transform: translate(-50%, -50%);
     font-family: 'Ma Shan Zheng', cursive;
     font-size: 150px;
-    border: 2px solid yellow;
+    border: 5px solid yellow;
     background-color: red;
     color: yellow;
 }
@@ -27,6 +26,7 @@ input.text-input {
     width: 70px;
     height: 20px;
     border: 1px solid red;
+    font-family: 'Noto Sans SC', sans-serif;
     font-size: 20px;
     padding: 10px;
 }
@@ -38,6 +38,7 @@ input.button-input {
     background-color: red;
     color: yellow;
     border: none;
+    font-family: 'Noto Sans SC', sans-serif;
     font-size: 20px;
     padding: 10px;
 }
@@ -52,4 +53,12 @@ div#banner {
     right: 40px;
     top: 50%;
     transform: translateY(-50%);
+}
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    text-align: center;
 }
