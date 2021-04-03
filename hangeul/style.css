@@ -53,6 +53,9 @@ input.button-input {
     font-size: 20px;
     padding: 10px;
 }
+input.button-input:disabled {
+    background-color: rgba(239, 239, 239, 0.3);
+}
 input.checkbox-input {
     width: 70px;
     height: 20px;

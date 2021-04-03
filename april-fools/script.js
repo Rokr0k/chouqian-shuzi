@@ -32,6 +32,7 @@ roll1.onclick = function() {
     }
     mode1.childNodes.forEach(node => node.disabled = true)
     let arr = "abcdefghijklmnopqrstuvwxyz"
+    viewer.style.width = "500px"
     let interval = setInterval(() => {
         let result = arr.split("").shuffle()
         result[0] = result[0].toUpperCase()
@@ -46,6 +47,7 @@ roll1.onclick = function() {
         }
         let str = result.toChineseString().split("")
         str[0] = str[0].toUpperCase()
+        viewer.style.width = "fit-content"
         viewer.innerHTML = str.join("")
         excpt.value = result.toString().concat(" ").concat(excpt.value.concat(" ")).trim()
     }, 2500)
