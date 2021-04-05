@@ -50,7 +50,7 @@ roll1.onclick = function() {
         viewer.style.width = "fit-content"
         viewer.innerHTML = str.join("")
         excpt.value = result.toString().concat(" ").concat(excpt.value.concat(" ")).trim()
-    }, 2500)
+    }, 1500)
 }
 
 roll2.onclick = function() {
