@@ -27,16 +27,13 @@ roll1.onclick = function() {
     const maxValue = Math.max(max.value, min.value)
     const excptValues = excpt.value.split(" ").filter(value => value.match(/^\d+$/)).map(number => parseInt(number)).sort()
     if(maxValue - minValue + 1 <= excptValues.length) {
-        alert("No numbers available")
+        alert("没有数字")
         return
     }
     mode1.childNodes.forEach(node => node.disabled = true)
-    let arr = "abcdefghijklmnopqrstuvwxyz"
-    viewer.style.width = "500px"
     let interval = setInterval(() => {
-        let result = arr.split("").shuffle()
-        result[0] = result[0].toUpperCase()
-        viewer.innerHTML = result.join("").substr(0, 10)
+        let result = Math.floor(Math.random() * 100)
+        viewer.innerHTML = result.toManchuString()
     }, 50)
     setTimeout(() => {
         clearInterval(interval)
@@ -45,10 +42,8 @@ roll1.onclick = function() {
         while(excptValues.includes(result)) {
             result = parseInt(Math.random() * (maxValue - minValue + 1) + minValue)
         }
-        let str = result.toChineseString().split("")
-        str[0] = str[0].toUpperCase()
-        viewer.style.width = "fit-content"
-        viewer.innerHTML = str.join("")
+        let str = result.toManchuString()
+        viewer.innerHTML = str
         excpt.value = result.toString().concat(" ").concat(excpt.value.concat(" ")).trim()
     }, 1500)
 }
@@ -56,26 +51,23 @@ roll1.onclick = function() {
 roll2.onclick = function() {
     const selectValue = select.value.split(" ").filter(value => value.match(/^\d+$/)).map(number => parseInt(number)).sort((a, b) => a - b)
     if(selectValue.length == 0) {
-        alert("No numbers available")
+        alert("没有数字")
         return
     }
     console.log(selectValue)
     mode2.childNodes.forEach(node => node.disabled = true)
-    let arr = "abcdefghijklmnopqrstuvwxyz"
     let interval = setInterval(() => {
-        let result = arr.split("").shuffle()
-        result[0] = result[0].toUpperCase()
-        viewer.innerHTML = result.join("").substr(0, 10)
+        let result = Math.floor(Math.random() * 100)
+        viewer.innerHTML = result.toManchuString()
     }, 50)
     setTimeout(() => {
         clearInterval(interval)
         mode2.childNodes.forEach(node => node.disabled = false)
         const result = selectValue[Math.floor(Math.random()*selectValue.length)]
-        let str = result.toChineseString().split("")
-        str[0] = str[0].toUpperCase()
-        viewer.innerHTML = str.join("")
+        let str = result.toManchuString()
+        viewer.innerHTML = str
         select.value = select.value.replace(new RegExp(result+"\\s*"), "")
-    }, 2500)
+    }, 1500)
 }
 
 let modeValue = false
@@ -108,56 +100,45 @@ setInterval(() => {
     banner.innerHTML = banners[prev]
 }, 15000)
 
-Number.prototype.toChineseString = function() {
+Number.prototype.toManchuString = function() {
     if(this == 0) {
-        return "zero"
+        return "<ruby>ᠠᡴᡡ<rt>无</rt></ruby>"
     }
     else if(this < 100) {
         let ones = {
             0: "",
-            1: "one",
-            2: "two",
-            3: "three",
-            4: "four",
-            5: "five",
-            6: "six",
-            7: "seven",
-            8: "eight",
-            9: "nine",
-        }
-        let specs = {
-            10: "ten",
-            11: "eleven",
-            12: "twelve",
-            13: "thirteen",
-            14: "fourteen",
-            15: "fifteen",
-            16: "sixteen",
-            17: "seventeen",
-            18: "eighteen",
-            19: "nineteen",
+            1: "<ruby>ᡝᠮᡠ<rt>一</rt></ruby>",
+            2: "<ruby>ᠵᡠᠸᡝ<rt>二</rt></ruby>",
+            3: "<ruby>ᡳᠯᠠᠨ<rt>三</rt></ruby>",
+            4: "<ruby>ᡩᡠᡳᠨ<rt>四</rt></ruby>",
+            5: "<ruby>ᠰᡠᠨᠵᠠ<rt>五</rt></ruby>",
+            6: "<ruby>ᠨᡳᠩᡤᡠᠨ<rt>六</rt></ruby>",
+            7: "<ruby>ᠨᠠᡩᠠᠨ<rt>七</rt></ruby>",
+            8: "<ruby>ᠵᠠᡴᡡᠨ<rt>八</rt></ruby>",
+            9: "<ruby>ᡠᠶᡠᠨ<rt>九</rt></ruby>",
         }
         let tens = {
-            2: "twenty",
-            3: "thirty",
-            4: "forty",
-            5: "fifty",
-            6: "sixty",
-            7: "seventy",
-            8: "eighty",
-            9: "ninety",
+            1: "<ruby>ᠵᡠᠸᠠᠨ<rt>十</rt></ruby>",
+            2: "<ruby>ᠣᡵᡳᠨ<rt>二十</rt></ruby>",
+            3: "<ruby>ᡤᡡᠰᡳᠨ<rt>三十</rt></ruby>",
+            4: "<ruby>ᡩᡝᡥᡠ<rt>四十</rt></ruby>",
+            5: "<ruby>ᠰᡠᠰᠠᡳ<rt>五十</rt></ruby>",
+            6: "<ruby>ᠨᡳᠨᠵᡠ<rt>六十</rt></ruby>",
+            7: "<ruby>ᠨᠠᡩᠠᠨᠵᡠ<rt>七十</rt></ruby>",
+            8: "<ruby>ᠵᠠᡴᡡᠨᠵᡠ<rt>八十</rt></ruby>",
+            9: "<ruby>ᡠᠶᡠᠨᠵᡠ<rt>九十</rt></ruby>",
         }
         let a = parseInt(this / 10)
         let b = this % 10
         let result
-        if(a > 1) {
+        if(a > 0) {
             result = [tens[a], ones[b]]
-        }
-        else if(a == 1) {
-            result = [specs[this]]
         }
         else {
             result = [ones[b]]
+        }
+        if(this === 15) {
+            result = ["<ruby>ᡨᠣᡶᠣᡥᠣᠨ<rt>十五</rt></ruby>"]
         }
         return result.join(" ")
     }

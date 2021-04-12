@@ -2,11 +2,11 @@
     font-family: 'Noto Serif CJK KR';
     src: url('NotoSerifCJKkr-Regular.otf');
 }
-@font-face {
+/*@font-face {
     font-family: 'Noto Serif CJK KR';
     src: url('NotoSerifCJKkr-Black.otf');
     font-weight: 900;
-}
+}*/
 
 div.background {
     position: absolute;
@@ -33,7 +33,7 @@ hr {
 #number-viewer {
     writing-mode: vertical-rl;
     width: auto;
-    height: fit-content;
+    height: 510px;
     padding: 50px;
     position: absolute;
     left: 50%;

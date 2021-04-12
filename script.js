@@ -75,7 +75,7 @@ roll2.onclick = function() {
         const result = selectValue[Math.floor(Math.random()*selectValue.length)]
         viewer.innerHTML = result.toChineseString()
         select.value = select.value.replace(new RegExp(result+"\\s*"), "")
-    }, 2500)
+    }, 1500)
 }
 
 let modeValue = false

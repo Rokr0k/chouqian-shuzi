@@ -9,8 +9,9 @@ hr {
 }
 #number-viewer {
     writing-mode: vertical-rl;
+    vertical-align: middle;
     width: auto;
-    height: fit-content;
+    height: 450px;
     padding: 50px;
     position: absolute;
     left: 50%;
@@ -26,7 +27,7 @@ input.text-input {
     width: 70px;
     height: 20px;
     border: 1px solid red;
-    font-family: 'Noto Sans SC', sans-serif;
+    font-family: inherit;
     font-size: 20px;
     padding: 10px;
 }
@@ -38,7 +39,7 @@ input.button-input {
     background-color: red;
     color: yellow;
     border: none;
-    font-family: 'Noto Sans SC', sans-serif;
+    font-family: inherit;
     font-size: 20px;
     padding: 10px;
 }
