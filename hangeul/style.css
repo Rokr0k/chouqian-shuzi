@@ -2,11 +2,11 @@
     font-family: 'Noto Serif CJK KR';
     src: url('NotoSerifCJKkr-Regular.otf');
 }
-/*@font-face {
+@font-face {
     font-family: 'Noto Serif CJK KR';
     src: url('NotoSerifCJKkr-Black.otf');
     font-weight: 900;
-}*/
+}
 
 div.background {
     position: absolute;
@@ -16,7 +16,7 @@ div.background {
     right: 0;
     font-size: 50px;
     font-weight: 900;
-    color: #f0f0f0;
+    color: #00000018;
     user-select: none;
     cursor: default;
     z-index: -1;

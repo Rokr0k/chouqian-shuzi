@@ -1,8 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC&family=Ma+Shan+Zheng&display=swap');
 
+@font-face {
+    src: url('./NotoSansMongolian.ttf');
+    font-family: 'Noto Sans Mongolian';
+}
+
 body {
     background-image: url("./background.png");
-    font-family: 'Noto Sans SC', serif;
+    font-family: 'Noto Sans SC', 'Noto Sans Mongolian', sans-serif;
     writing-mode: vertical-lr;
 }
 hr {
@@ -13,12 +18,13 @@ hr {
     width: auto;
     height: 700px;
     padding: 50px;
+    padding-right: 80px;
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    font-family: 'Ma Shan Zheng', cursive;
-    font-size: 200px;
+    font-family: 'Ma Shan Zheng', 'Noto Sans Mongolian', sans-serif;
+    font-size: 100px;
     border: 5px solid red;
     background-color: yellow;
     color: red;
@@ -66,4 +72,7 @@ footer {
     right: 0;
     padding: 10px;
     text-align: center;
+}
+ruby {
+    line-height: 60px;
 }
