@@ -54,7 +54,6 @@ roll2.onclick = function() {
         alert("没有数字")
         return
     }
-    console.log(selectValue)
     mode2.childNodes.forEach(node => node.disabled = true)
     let interval = setInterval(() => {
         let result = Math.floor(Math.random() * 100)
@@ -144,23 +143,3 @@ Number.prototype.toManchuString = function() {
     }
     return ""
 }
-
-Array.prototype.shuffle = function() {
-    let result = [...this]
-    let currentIndex = result.length, temporaryValue, randomIndex;
-  
-    // While there remain elements to shuffle...
-    while (0 !== currentIndex) {
-  
-      // Pick a remaining element...
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-  
-      // And swap it with the current element.
-      temporaryValue = result[currentIndex];
-      result[currentIndex] = result[randomIndex];
-      result[randomIndex] = temporaryValue;
-    }
-  
-    return result;
-  }

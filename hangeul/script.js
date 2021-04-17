@@ -57,7 +57,6 @@ roll2.onclick = function() {
     if(selectValue.length == 0) {
         alert("쵹ᄍᆞᆼᅟᅵ업다")
     }
-    console.log(selectValue)
     mode2.childNodes.forEach(node => node.disabled = true)
     let arr = ["려ᇰ〮", "ᅙᅵᇙ〮", "ᅀᅵᆼ〮", "삼〮", "ᄉᆞᆼ〯", "ᅌᅩᆼ〯", "륙〮", "치ᇙ〮", "바ᇙ〮", "구ᇢ〯"]
     let interval = setInterval(() => {

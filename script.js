@@ -58,7 +58,6 @@ roll2.onclick = function() {
         alert("没有数字")
         return
     }
-    console.log(selectValue)
     mode2.childNodes.forEach(node => node.disabled = true)
     let arr = "零一二三四五六七八九十"
     let interval = setInterval(() => {

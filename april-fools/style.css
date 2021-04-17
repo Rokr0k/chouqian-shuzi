@@ -1,9 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC&family=Ma+Shan+Zheng&display=swap');
 
-@font-face {
-    src: url('./NotoSansMongolian.ttf');
-    font-family: 'Noto Sans Mongolian';
-}
+@import url('https://fonts.googleapis.com/earlyaccess/notosansmongolian.css');
 
 body {
     background-image: url("./background.png");
@@ -16,15 +13,14 @@ hr {
 #number-viewer {
     writing-mode: vertical-lr;
     width: auto;
-    height: 700px;
+    height: 780px;
     padding: 50px;
-    padding-right: 80px;
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     font-family: 'Ma Shan Zheng', 'Noto Sans Mongolian', sans-serif;
-    font-size: 100px;
+    font-size: 120px;
     border: 5px solid red;
     background-color: yellow;
     color: red;
