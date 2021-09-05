@@ -45,7 +45,7 @@ roll1.onclick = function() {
         let str = result.toManchuString()
         viewer.innerHTML = str
         excpt.value = result.toString().concat(" ").concat(excpt.value.concat(" ")).trim()
-    }, 1500)
+    }, 1000)
 }
 
 roll2.onclick = function() {
@@ -66,7 +66,7 @@ roll2.onclick = function() {
         let str = result.toManchuString()
         viewer.innerHTML = str
         select.value = select.value.replace(new RegExp(result+"\\s*"), "")
-    }, 1500)
+    }, 1000)
 }
 
 let modeValue = false
