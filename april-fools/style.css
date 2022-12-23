@@ -7,9 +7,11 @@ body {
     font-family: 'Noto Sans SC', 'Noto Sans Mongolian', sans-serif;
     writing-mode: vertical-lr;
 }
+
 hr {
     border: 1px solid red;
 }
+
 #number-viewer {
     writing-mode: vertical-lr;
     width: auto;
@@ -25,6 +27,7 @@ hr {
     background-color: yellow;
     color: red;
 }
+
 input.text-input {
     width: 40px;
     height: 20px;
@@ -33,10 +36,13 @@ input.text-input {
     font-size: 20px;
     padding: 10px;
 }
-input#excpt, input#select {
+
+input#excpt,
+input#select {
     width: 100px;
     height: 20px;
 }
+
 input.button-input {
     width: fit-content;
     background-color: yellow;
@@ -46,13 +52,16 @@ input.button-input {
     font-size: 20px;
     padding: 10px;
 }
+
 input.button-input:disabled {
     background-color: rgba(239, 239, 0, 0.3);
 }
+
 input.checkbox-input {
     width: 70px;
     height: 20px;
 }
+
 div#banner {
     width: 200px;
     height: 600px;
@@ -61,6 +70,7 @@ div#banner {
     top: 50%;
     transform: translateY(-50%);
 }
+
 footer {
     position: absolute;
     bottom: 0;
@@ -69,6 +79,7 @@ footer {
     padding: 10px;
     text-align: center;
 }
+
 ruby {
     line-height: 60px;
 }

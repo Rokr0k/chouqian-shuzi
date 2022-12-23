@@ -18,9 +18,11 @@ div.background {
 body {
     font-family: 'Noto Sans KR', sans;
 }
+
 hr {
     border: 1px solid black;
 }
+
 #number-viewer {
     width: 820px;
     height: auto;
@@ -35,6 +37,7 @@ hr {
     background-color: white;
     color: black;
 }
+
 input.text-input {
     width: 70px;
     height: 20px;
@@ -43,9 +46,12 @@ input.text-input {
     font-size: 20px;
     padding: 10px;
 }
-input#excpt, input#select {
+
+input#excpt,
+input#select {
     width: initial;
 }
+
 input.button-input {
     width: fit-content;
     background-color: white;
@@ -55,13 +61,16 @@ input.button-input {
     font-size: 20px;
     padding: 10px;
 }
+
 input.button-input:disabled {
     background-color: rgba(239, 239, 239, 0.3);
 }
+
 input.checkbox-input {
     width: 70px;
     height: 20px;
 }
+
 div#banner {
     width: 200px;
     height: 600px;
