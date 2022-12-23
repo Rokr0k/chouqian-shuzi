@@ -1,41 +1,45 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-    <head>
-        <meta charset="utf-8">
-        <title>抽签数字</title>
-        <script>
-            let date = new Date().getMonth() * 32 + new Date().getDate()
-            if(date === 97) {
-                location.replace("./april-fools/")
-            }
-            if(date === 297) {
-                location.replace("./hangeul/")
-            }
-        </script>
-        <link rel="stylesheet" href="style.css">
-        <link rel="shortcut icon" href="favicon.ico">
-    </head>
-    <body>
-        <header>
-            <h1>韩国数码媒体高等学校</h1>
-        </header>
-        <hr>
-        <div id="mode1" style="display: block;">
-            <input type="number" class="text-input" id="min" placeholder="最小" value="1">
-            <input type="number" class="text-input" id="max" placeholder="最大" value="35">
-            <input type="text" class="text-input" id="excpt" placeholder="例外">
-            <input type="button" class="button-input" id="roll1" value="抽签">
-        </div>
-        <div id="mode2" style="display: none;">
-            <input type="text" class="text-input" id="select">
-            <input type="button" class="button-input" id="roll2" value="抽签">
-        </div>
-        <hr>
-        <input type="button" class="button-input" id="mode" value="更改状态">
-        <div id="banner"></div>
-        <footer><a href='https://pngtree.com/free-backgrounds'>free background photos from pngtree.com</a></footer>
-        <div id="number-viewer"></div>
-        <div style="position: absolute; right: 0; bottom: 0; opacity: 50%; font-size: 50px; color: white;">Rokr0k &copy; 2021</div>
+
+<head>
+    <meta charset="utf-8">
+    <title>抽签数字</title>
+    <script>
+        let date = new Date().getMonth() * 32 + new Date().getDate()
+        if (date === 97) {
+            location.replace("./april-fools/")
+        }
+        if (date === 297) {
+            location.replace("./hangeul/")
+        }
+    </script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="favicon.ico">
+</head>
+
+<body>
+    <header>
+        <h1>韩国数码媒体高等学校</h1>
+    </header>
+    <hr>
+    <div id="mode1" style="display: block;">
+        <input type="number" class="text-input" id="min" placeholder="最小" value="1">
+        <input type="number" class="text-input" id="max" placeholder="最大" value="35">
+        <input type="text" class="text-input" id="excpt" placeholder="例外">
+        <input type="button" class="button-input" id="roll1" value="抽签">
+    </div>
+    <div id="mode2" style="display: none;">
+        <input type="text" class="text-input" id="select">
+        <input type="button" class="button-input" id="roll2" value="抽签">
+    </div>
+    <hr>
+    <input type="button" class="button-input" id="mode" value="更改状态">
+    <div id="banner"></div>
+    <footer><a href='https://pngtree.com/free-backgrounds'>free background photos from pngtree.com</a></footer>
+    <div id="number-viewer"></div>
+    <a style="position: absolute; right: 0; bottom: 0; opacity: 50%; font-size: 50px; color: white; text-decoration: none;"
+        href="https://github.com/Rokr0k/chouqian-shuzi">Rokr0k &copy; 2021</div>
         <script src="script.js"></script>
-    </body>
+</body>
+
 </html>
