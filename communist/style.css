@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+SC&display=swap');
+
+body {
+    background-image: url("./background.jpg");
+    font-family: 'Noto Sans SC', sans-serif;
+}
+
+header {
+    color: #ffff00;
+    text-shadow: -2px -2px 0 #ff0000, 2px -2px 0 #ff0000, -2px 2px 0 #ff0000, 2px 2px 0 #ff0000;
+}
+
+hr {
+    border: 1px solid goldenrod;
+}
+
+#number-viewer {
+    vertical-align: middle;
+    width: 450px;
+    height: auto;
+    padding: 50px;
+    position: absolute;
+    left: 50%;
+    top: 75%;
+    transform: translate(-50%, -50%);
+    font-family: 'Ma Shan Zheng', cursive;
+    font-size: 150px;
+    border: 5px solid yellow;
+    background-color: red;
+    color: yellow;
+}
+
+input.text-input {
+    width: 70px;
+    height: 20px;
+    border: 1px solid red;
+    font-family: inherit;
+    font-size: 20px;
+    padding: 10px;
+}
+
+input#excpt,
+input#select {
+    width: initial;
+}
+
+input.button-input {
+    width: fit-content;
+    background-color: red;
+    color: yellow;
+    border: none;
+    font-family: inherit;
+    font-size: 20px;
+    padding: 10px;
+}
+
+input.button-input:disabled {
+    background-color: rgba(255, 0, 0, 0.3);
+}
+
+input.checkbox-input {
+    width: 70px;
+    height: 20px;
+}
+
+div#banner {
+    width: 200px;
+    height: 600px;
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    text-align: center;
+}
